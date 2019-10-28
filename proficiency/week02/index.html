@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CIT261 - Fall 2019 - Proficiency - Week02</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body>
+    <h1>CIT261 - Fall 2019 - Proficiency - Week02</h1>
+    <h2>Pedro Pereira</h2>
+    <h3>
+      Demonstrate fluency in <a href="#t1">Loops</a>, <a href="#t2">Conditional Statements</a>, <a href="#t3">Functions</a>,
+      <a href="#t4">Variables</a>, <a href="#t5">Parameters</a>, <a href="#t6">Arrays</a>, <a href="#t7">Associative Arrays</a>.
+    </h3>
+
+    <ul>
+      <li>
+        <div class="topic-title" id="t1">1 - Loops</div>
+        <div class="topic-body">
+          <p>
+            Loops are important to execute blocks of code more than one time.
+          </p>
+          <p class="topic-item">for</p>
+          <p class="topic-item-text">
+            A <code>for</code> loop executes a block of code a defined number of
+            iterations.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+        </pre
+          >
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-1-code">
+var buffer = '';
+for(i=0; i < 5; i++) {
+  buffer += `${i} is ${(i % 2) ? 'odd' : 'even'}\n`;
+}
+</pre
+          >
+          <button class="topic-button" data-id="1">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-1-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">while</p>
+          <p class="topic-item-text">
+            A <code>while</code> loop executes a block of code as long as a
+            condition evaluates true.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+while (condition) {
+  // code block to be executed
+}
+        </pre
+          >
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-2-code">
+var buffer = '';
+var i = -1;
+while(i++ < 4) {
+    buffer += `${i} is ${(i % 2) ? 'odd' : 'even'}\n`;
+}
+</pre
+          >
+          <button class="topic-button" data-id="2">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-2-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">do</p>
+          <p class="topic-item-text">
+            A <code>do</code> loop executes a block of code as long as a
+            condition evaluates true. The main difference is the codition
+            evaluation. <code>do</code> executes one time then conditional
+            expression is run.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+do {
+  // code block to be executed
+}
+while (condition);
+</pre
+          >
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-3-code">
+var buffer = '';
+var i = 0;
+do
+{
+  buffer += `${i} is ${(i % 2) ? 'odd' : 'even'}\n`;
+} while(++i < 5) 
+</pre
+          >
+          <button class="topic-button" data-id="3">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-3-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t2">2 - Conditional Statements</div>
+        <div class="topic-body">
+          <p>
+            Conditional statements, different blocks of code may be executed
+            based in pre-defined conditions.
+          </p>
+          <!-- IF-->
+          <p class="topic-item">if</p>
+          <p class="topic-item-text">
+            An <code>if</code> statement executes a block of code if the
+            specified condition is true.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+if (condition) {
+  //  block of code to be executed if the condition is true
+} else {
+  //  block of code to be executed if the condition is false
+}
+              </pre
+          >
+          <p class="topic-item-header">Example</p>
+
+          <pre class="prettyprint" id="topic-4-code">
+var buffer = '';
+const input = document.getElementById('topic-4-input-1').value;
+
+if( input > 5) {
+  buffer = "You're almost to reach 10.";
+} else {
+  buffer = "Keep going. Number 10 is almost there.";
+}
+</pre
+          >
+          Enter a number between 0 and 10:
+          <input type="text" id="topic-4-input-1" />
+          <button class="topic-button" data-id="4">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-4-console" class="topic-console"></pre>
+          </div>
+          <!-- END IF -->
+          <!-- SWITCH -->
+          <p class="topic-item">switch</p>
+          <p class="topic-item-text">
+            A <code>switch</code> statement selects one block of code to
+            execute.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+              </pre
+          >
+          <p class="topic-item-header">Example</p>
+
+          <pre class="prettyprint" id="topic-5-code">
+var buffer = '';
+const input = document.getElementById('topic-5-input-1').value;
+
+switch( parseInt(input) )
+{
+  case 1:
+    buffer = "You're starting your journey to number 10.";
+    break;
+  case 5:
+    buffer = "You're half-way to number 10.";
+    break;
+  case 9:
+    buffer = "One more step to number 10.";
+    break;
+  case 10:
+    buffer = "That's it! You made it!";
+    break;
+  default:
+    buffer = "Keep going.";
+}
+</pre
+          >
+          Enter a number between 0 and 10:
+          <input type="text" id="topic-5-input-1" />
+          <button class="topic-button" data-id="5">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-5-console" class="topic-console"></pre>
+          </div>
+          <!-- END SWITCH -->
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t3">3 - Functions</div>
+        <div class="topic-body">
+          <!-- FUNCTIONS -->
+          <p class="topic-item">functions</p>
+          <p class="topic-item-text">
+            A function is a block of code created to perform a specific
+            operation.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+function name(parameter1, parameter2, parameter3) {
+  // code to be executed
+}
+              </pre
+          >
+          <p class="topic-item-header">Example</p>
+
+          <pre class="prettyprint" id="topic-6-code">
+function square(number) {
+  return number * number;
+}
+
+const input = document.getElementById('topic-6-input-1').value;
+buffer = `${input}^2 = ${square(input)}`;
+
+</pre
+          >
+          Enter a number:
+          <input type="text" id="topic-6-input-1" />
+          <button class="topic-button" data-id="6">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-6-console" class="topic-console"></pre>
+          </div>
+          <!-- END FUNCTION -->
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t4">4 - Variables</div>
+        <div class="topic-body">
+          <!-- VARIABLES -->
+          <p class="topic-item">Variables</p>
+          <p class="topic-item-text">
+            Variables store data throughout the code. The most common types of
+            data are strings and numbers.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">var variable_name = value;</pre>
+          <p class="topic-item-header">Example</p>
+
+          <pre class="prettyprint" id="topic-7-code">
+var buffer;
+
+buffer = 10;</pre
+          >
+          <button class="topic-button" data-id="7">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-7-console" class="topic-console"></pre>
+          </div>
+          <!-- END VARIABLES -->
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t5">5 - Parameters</div>
+        <div class="topic-body">
+          <!-- PARAMETERS -->
+          <p class="topic-item">Rules</p>
+          <p class="topic-item-text">
+            <ul><li>JavaScript function definitions do not specify data types for
+            parameters.</li>
+            <li>JavaScript functions do not perform type checking on the
+            passed arguments.</li>
+            <li>JavaScript functions do not check the number of
+            arguments received.</li>
+          </ul>
+          </p>
+          <p class="topic-item">Defaults</p>
+          <p class="topic-item-text">
+            If a function is called with missing arguments (less than declared),
+            the missing values are set to: <code>undefined</code>
+
+            Sometimes this is acceptable, but sometimes it is better to assign a
+            default value to the parameter.
+          </p>
+          <p class="topic-item-header">Example</p>
+
+          <pre class="prettyprint" id="topic-8-code">
+function sumTwoNumbers(x, y) {
+  if (y === undefined) {
+    y = 0;
+  }
+
+  return x + y;
+}
+buffer = sumTwoNumbers(10);</pre
+          >
+          <button class="topic-button" data-id="8">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-8-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">The <code>arguments</code> object</p>
+          <p class="topic-item-text">
+            JavaScript functions have a built-in object called the arguments
+            object. The argument object contains an array of the arguments used
+            when the function was called (invoked). This way you can simply use
+            a function to find (for instance) the highest value in a list of
+            numbers.
+          </p>
+          <p class="topic-item-header">Example</p>
+
+          <pre class="prettyprint" id="topic-9-code">
+function findMax() {
+  var i;
+  var max = -Infinity;
+  for (i = 0; i < arguments.length; i++) {
+    if (arguments[i] > max) {
+      max = arguments[i];
+    }
+  }
+  return max;
+}
+buffer = findMax(1, 123, 500, 115, 44, 88);</pre
+          >
+          <button class="topic-button" data-id="9">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-9-console" class="topic-console"></pre>
+          </div>
+          <!-- END PARAMETERS -->
+        </div>
+      </li>
+      <li>
+          <div class="topic-title" id="t6">6 - Array</div>
+          <div class="topic-body">
+            <!-- ARRAY -->
+            <p class="topic-item-text">
+             An array is a collection of same-type data.
+            </p>
+            <p class="topic-item-header">Syntax</p>
+  
+            <pre class="prettyprint">
+var array_name = [item1, item2, ...];</pre
+            >
+
+            <p class="topic-item-header">Example</p>
+  
+            <pre class="prettyprint" id="topic-10-code">
+var cars = ["Fusca", "Brasília", "Corcel", "Belina"];
+const input = document.getElementById('topic-10-input-1').value;
+buffer = cars[input];</pre
+            >
+            Enter a number between 0 and 3:
+            <input type="text" id="topic-10-input-1" />
+  
+            <button class="topic-button" data-id="10">Execute</button>
+            <div class="topic-console">
+              <pre id="topic-10-console" class="topic-console"></pre>
+            </div>
+            <!-- END ARRAY -->
+          </div>
+        </li>
+        <li>
+            <div class="topic-title" id="t7">7 - Associate Arrays</div>
+            <div class="topic-body">
+              <!-- ASSOCIATIVE ARRAY -->
+              <p class="topic-item-text">
+               An array cannot be indexed using strings. Only integers can act as array indexes. However, JavaScript has a mechanism to access a variable associated with an array's object property collection.
+               To use an array as associative, a empty array must be create and then elements must be assigned.
+              </p>
+             
+              <p class="topic-item-header">Example</p>
+    
+              <pre class="prettyprint" id="topic-11-code">
+// empty array
+var person = []; // empty array
+
+// add elements with string keys
+person['name'] = 'Pedro';
+person['age'] = 46;
+person['city'] = 'Campo Grande';
+person['state'] = 'MS';
+
+buffer = `${person['name']}\n${person['age']}\n${person['city']}, ${person['state']}`
+</pre
+              >
+              <button class="topic-button" data-id="11">Execute</button>
+              <div class="topic-console">
+                <pre id="topic-11-console" class="topic-console"></pre>
+              </div>
+              <!-- END ARRAY -->
+            </div>
+          </li>        
+      </ul>
+    <script src="main.js"></script>
+  </body>
+</html>

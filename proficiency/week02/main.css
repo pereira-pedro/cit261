@@ -1,0 +1,39 @@
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 4px;
+}
+
+.topic-title {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.topic-item {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.topic-item-text {
+  font-style: italic;
+}
+
+.topic-item-header {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.topic-console {
+  border: 1px dotted dimgray;
+  background-color: lightgrey;
+  visibility: hidden;
+}
+
+code {
+  color: red;
+  background-color: lightgrey;
+  padding: 1px;
+}
