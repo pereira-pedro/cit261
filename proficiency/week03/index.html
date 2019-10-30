@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CIT261 - Fall 2019 - Proficiency - Week03</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body>
+    <h1>CIT261 - Fall 2019 - Proficiency - Week03</h1>
+    <h2>Pedro Pereira</h2>
+    <h3>
+      Demonstrate fluency in <a href="#t1">Object Creation Functions</a>,
+      <a href="#t2">Inheritance</a>, <a href="#t3">Properties</a>,
+      <a href="#t4">Methods</a>, <a href="#t5">Instantiation</a>.
+    </h3>
+    <ul>
+      <li>
+        <div class="topic-title" id="t1">1 - Object Creation Functions</div>
+        <div class="topic-body">
+          <p class="topic-item">Object Literal</p>
+          <p class="topic-item-text">
+            The easiest way to create a JavaScript object is using a collection
+            of properties and values. Each pair (proberty/value) is
+            comma-separated. All object needs to be inside curly braces.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-1-code">
+var buffer = '';
+const student = { name: 'Pedro Pereira', email: 'per17009@byui.edu', city: 'Campo Grande', state: 'MS'}
+
+buffer = `Name: ${student.name}\nE-mail: ${student.email}\nCity: ${student.city}, ${student.state}`;</pre
+          >
+          <button class="topic-button" data-id="1">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-1-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Constructor</p>
+          <p class="topic-item-text">
+            Constructor is nothing but a function that defines an object using
+            the operator (keyword) <code>this</code>. To create an object the
+            <code>new</code> operator needs to be used.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-2-code">
+function Student(name, email) {
+    this.name = name;
+    this.email = email;
+}
+
+var buffer = '';
+const student1 = new Student('Pedro Pereira', 'per17009@byui.edu');
+const student2 = new Student('Tatiana Pereira', 'tmarin@byui.edu');
+
+buffer += `Name: ${student1.name}\nE-mail: ${student1.email}\n`;
+buffer += `\nName: ${student2.name}\nE-mail: ${student2.email}\n`;
+</pre
+          >
+          <button class="topic-button" data-id="2">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-2-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Create method</p>
+          <p class="topic-item-text">
+            This a most complete aproach to create objects in JavaScript because
+            many options to attributes can be set. It uses
+            <code>Object.create()</code>.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-3-code">
+const student = Object.create(Object.prototype,
+  {
+    name:{
+      value: 'Pedro Pereira',
+      configurable: true,
+      writable: true,
+      enumerable: false
+    },
+    email:{
+      value: 'per17009@byui.edu',
+      configurable: true,
+      writable: true,
+      enumerable: false
+    }
+  });
+
+var buffer = '';
+buffer = `Name: ${student.name}\nE-mail: ${student.email}`;</pre
+          >
+          <button class="topic-button" data-id="3">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-3-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Using ES6 classes</p>
+          <p class="topic-item-text">
+            Since ECMAScript 6, is possible to create classes just like any
+            other object-oriented language. After the class definition, an
+            object can be instantiated.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-4-code">
+var buffer = '';
+
+class Student {
+    constructor(name, email) {
+        this.name = name;
+        this.email = email;
+    }
+}
+
+const student1 = new Student('Pedro Pereira', 'per17009@byui.edu');
+const student2 = new Student('Tatiana Pereira', 'tmarin@byui.edu');
+
+buffer += `Name: ${student1.name}\nE-mail: ${student1.email}\n`;
+buffer += `\nName: ${student2.name}\nE-mail: ${student2.email}\n`;
+</pre
+          >
+          <button class="topic-button" data-id="4">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-4-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t2">2 - Inheritance</div>
+        <p>
+          Modern JavaScript allows classes inheritance. This section shows two
+          ways doing class inheritance using JavaScript.
+        </p>
+        <div class="topic-body">
+          <p class="topic-item">Using ES5</p>
+          <p class="topic-item-text">
+            An object must be created much like creating an object using
+            <code>Object.create()</code>.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-5-code">
+var buffer = '';
+function Person(name, email) {
+    this.name = name;
+    this.email = email;
+}
+
+Person.prototype.getName = function getName() {
+    return this.name;
+}
+
+Person.prototype.getEmail = function getEmail() {
+    return this.email;
+}
+
+function Student(name, email, gpa) {
+    this.gpa = gpa;
+
+    Person.call(this, name, email);
+}
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Student;
+Student.parent = Person.prototype;
+
+Student.prototype.getName = function () {
+    return this.name;
+}
+
+Student.prototype.getEmail = function () {
+    return this.email;
+}
+
+Student.prototype.getGPA = function getGPA() {
+    return this.gpa;
+}
+
+const student = new Student('Pedro Pereira', 'per17009@byui.edu', 3.7);
+
+buffer = `Name: ${student.getName()}\nE-mail: ${student.getEmail()}\nGPA: ${student.getGPA()}`;</pre
+          >
+          <button class="topic-button" data-id="5">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-5-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Using ES6</p>
+          <p class="topic-item-text">
+            Using ES6 things are more clear and much alike other
+            object-orientaded languages.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-6-code">
+var buffer = '';
+
+class Person {
+    constructor (name, email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    getName () {
+        return this.name;
+    }
+
+    getEmail() {
+        return this.email;
+    }
+}
+
+class Student extends Person {
+    constructor(name, email, gpa) {
+
+        super(name, email);
+
+        this.gpa = gpa;
+    }
+
+    getName() {
+        return super.getName();
+    }
+
+    getEmail() {
+        return super.getEmail();
+    }
+
+    getGPA() {
+        return this.gpa;
+    }
+}
+const student = new Student('Pedro Pereira', 'per17009@byui.edu', 3.8);
+
+buffer = `Name: ${student.getName()}\nE-mail: ${student.getEmail()}\nGPA: ${student.getGPA()}`;</pre
+          >
+          <button class="topic-button" data-id="6">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-6-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t3">3 - Properties</div>
+        <p>
+          Properties are data stored by JavaScript objects. In fact, objects in
+          JavaScript are a collection of unordered properties.
+        </p>
+        <div class="topic-body">
+          <p class="topic-item">Acessing data</p>
+          <p class="topic-item-text">
+            There are two ways to have access to data.
+          </p>
+          <p class="topic-item-header">Syntax</p>
+          <pre class="prettyprint">
+objectName.property      // first
+objectName[expression]   // second
+              </pre
+          >
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-7-code">
+var buffer = '';
+const student = {name: "Pedro Pereira", email: "per17009@byui.edu"};
+
+buffer += `Name: ${student.name}\nE-mail: ${student.email}\n`;
+buffer += `Name: ${student["name"]}\nE-mail: ${student["email"]}`;</pre
+          >
+          <button class="topic-button" data-id="7">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-7-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Adding property</p>
+          <p class="topic-item-text">
+            Properties can be added to any JavaScript object.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-8-code">
+var buffer = '';
+const student = {name: "Pedro Pereira", email: "per17009@byui.edu"};
+
+student.gpa = 3.7;
+buffer += `Name: ${student.name}\nE-mail: ${student.email}\nGPA: ${student.gpa}\n`;</pre
+          >
+          <button class="topic-button" data-id="8">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-8-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Removing property</p>
+          <p class="topic-item-text">
+            Properties can be removed to any JavaScript object.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-9-code">
+var buffer = '';
+const student = {name: "Pedro Pereira", email: "per17009@byui.edu", gpa: 3.9};
+delete student.gpa;
+
+buffer += `Name: ${student.name}\nE-mail: ${student.email}\nGPA: ${student.hasOwnProperty('gpa')?student.gpa : 'N/A'}\n`;</pre
+          >
+          <button class="topic-button" data-id="9">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-9-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t4">4 - Methods</div>
+        <p>
+          Methods in JavaScript are functions stored as objects properties. Its
+          function is to perform operations on object properties.
+        </p>
+        <div class="topic-body">
+          <p class="topic-item">Executing a method</p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-10-code">
+var buffer = '';
+const student = {getName: function () { return this.name; }, getEmail: function () { return this.email; }};
+
+student.name = "Pedro Pereira"
+student.email = "per17009@byui.edu";
+
+buffer += `Name: ${student.getName()}\nE-mail: ${student.getEmail()}\n`;</pre
+          >
+          <button class="topic-button" data-id="10">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-10-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="topic-title" id="t5">5 - Instantiation</div>
+        <p>
+          Instantiation are ways to create something in JavasScript. There are
+          four methods to create objects. However, all four methods will create
+          an object and create methods and properties for that object.
+        </p>
+        <div class="topic-body">
+          <p class="topic-item">Functional</p>
+          <p class="topic-item-text">
+            A function is created, inside it and an empty object is created and
+            properties and methods are inserted. Finnaly, the object is
+            returned.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-11-code">
+    var buffer = '';
+    const Student = function(name, email) {
+        const obj = {};
+
+        obj.name = name;
+        obj.email = email;
+        obj.gpa = 0;
+
+        obj.setGPA = function(gpa) {
+            this.gpa = gpa;
+        }
+
+        obj.display = function() {
+            return `Name: ${this.name}\nEmail: ${this.email}\nGPA: ${this.gpa}\n`;
+        }
+
+        return obj;
+    }
+
+    const student = Student("Pedro Pereira", "per17009@byui.edu");
+    buffer += student.display();
+    student.setGPA(3.6);
+    buffer += student.display();</pre
+          >
+          <button class="topic-button" data-id="11">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-11-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Functional Shared</p>
+          <p class="topic-item-text">
+            A function is created, inside it and an empty object is created and
+            properties inserted. Finnaly, the object is returned. The methods
+            are defined in anothe extended object.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-12-code">
+var buffer = '';
+const Student = function(name, email) {
+    const obj = {};
+
+    obj.name = name;
+    obj.email = email;
+    obj.gpa = 0;
+
+    extend(obj, objMethods);
+
+    return obj;
+}
+const extend = function(obj, methods) {
+    for(var key in methods) {
+        obj[key] = methods[key];
+    }
+}
+
+const objMethods = {
+    setGPA: function(gpa) {
+        this.gpa = gpa;
+    },
+    display: function() {
+        return `Name: ${this.name}\nEmail: ${this.email}\nGPA: ${this.gpa}\n`;
+    }
+}
+
+const student = Student("Pedro Pereira", "per17009@byui.edu");
+buffer += student.display();
+student.setGPA(3.6);
+buffer += student.display();</pre
+          >
+          <button class="topic-button" data-id="12">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-12-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Prototypal</p>
+          <p class="topic-item-text">
+            Utilizes prototype chain to create objects. The methods are attached
+            to object's prototype using <code>Object.create()</code>.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-13-code">
+var buffer = '';
+const Student = function(name, email) {
+    const obj = Object.create(objMethods);
+
+    obj.name = name;
+    obj.email = email;
+    obj.gpa = 0;
+
+    return obj;
+}
+
+const objMethods = {
+    setGPA: function(gpa) {
+        this.gpa = gpa;
+    },
+    display: function() {
+        return `Name: ${this.name}\nEmail: ${this.email}\nGPA: ${this.gpa}\n`;
+    }
+}
+
+const student = Student("Pedro Pereira", "per17009@byui.edu");
+buffer += student.display();
+student.setGPA(3.6);
+buffer += student.display();</pre
+          >
+          <button class="topic-button" data-id="13">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-13-console" class="topic-console"></pre>
+          </div>
+          <p class="topic-item">Pseudoclassical</p>
+          <p class="topic-item-text">
+            Utilizes operator <code>this</code> to create properties and
+            <code>prototype</code> is used to methods.
+          </p>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-14-code">
+var buffer = '';
+const Student = function(name, email) {
+    this.name = name;
+    this.email = email;
+    this.gpa = 0;
+};
+
+Student.prototype.setGPA = function(gpa) {
+    this.gpa = gpa;
+};
+
+Student.prototype.display = function() {
+    return `Name: ${this.name}\nEmail: ${this.email}\nGPA: ${this.gpa}\n`;
+};
+
+const student = new Student("Pedro Pereira", "per17009@byui.edu");
+buffer += student.display();
+student.setGPA(3.6);
+buffer += student.display();</pre
+          >
+          <button class="topic-button" data-id="14">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-14-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <script src="main.js"></script>
+  </body>
+</html>
