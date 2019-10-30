@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CIT261 - Fall 2019 - Proficiency - Week04</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body>
+    <h1>CIT261 - Fall 2019 - Proficiency - Week04</h1>
+    <h2>Pedro Pereira</h2>
+    <h3>Demonstrate fluency in <a href="#t1">JSON</a>.</h3>
+    <ul>
+      <li>
+        <div class="topic-title" id="t1">1 - JSON</div>
+        <div class="topic-body">
+          <p class="topic-item">Definitions</p>
+          <ul class="topic-item-text" style="list-style: square;">
+            <li>JavaScript Object Notation</li>
+            <li>It's a lightweight format for storing and transporting data</li>
+            <li>Often used when data is transferred from/to server</li>
+            <li>It’s easy to understand and use</li>
+          </ul>
+          <p class="topic-item">Syntax</p>
+          <ul class="topic-item-text" style="list-style: square;">
+            <li>A JSON object in enclosed between { } (curly braces)</li>
+            <li>
+              An array of objects are enclosed between [ ] (square braces)
+            </li>
+            <li>Property name and its value are separated by : (colon)</li>
+            <li>Each tuple (name, value) is separated by , (comma)</li>
+          </ul>
+          <p class="topic-item">Convert String to JSON</p>
+          <ul class="topic-item-text" style="list-style: square;">
+            <li>It’s easy to convert from string to JSON in Javascript</li>
+            <li>
+              Create a string with the JSON syntax
+            </li>
+            <li>
+              Use the built-in function <code>JSON.parse()</code>to convert it
+            </li>
+          </ul>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-1-code">
+var buffer = '';
+const data = JSON.parse("{ \"students\": [ { \"name\": \"Pedro Pereira\", \"email\": \"per17009@byui.edu\", \"gpa\": 3.6}, { \"name\": \"Tatiana Pereira\", \"email\": \"tmarin@byui.edu\", \"gpa\": 4}] }");
+
+for(var i in data.students) {
+  buffer += `Name: ${data.students[i].name}\nE-mail: ${data.students[i].email}\nGPA: ${data.students[i].gpa}\n\n`;
+}</pre
+          >
+          <button class="topic-button" data-id="1">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-1-console" class="topic-console"></pre>
+          </div>
+
+          <p class="topic-item">Convert JSON to String</p>
+          <ul class="topic-item-text" style="list-style: square;">
+            <li>It’s easy to convert from JSON to string in Javascript</li>
+            <li>
+              It’s very useful to exchange information between app when data
+              NEEDS to be string
+            </li>
+            <li>
+              Use the built-in function <code>JSON.stringify()</code>to convert
+              it
+            </li>
+          </ul>
+          <p class="topic-item-header">Example</p>
+          <pre class="prettyprint" id="topic-2-code">
+var buffer = '';
+const data = JSON.parse("{ \"students\": [ { \"name\": \"Pedro Pereira\", \"email\": \"per17009@byui.edu\", \"gpa\": 3.6}, { \"name\": \"Tatiana Pereira\", \"email\": \"tmarin@byui.edu\", \"gpa\": 4}] }");
+
+buffer = JSON.stringify(data);
+</pre
+          >
+          <button class="topic-button" data-id="2">Execute</button>
+          <div class="topic-console">
+            <pre id="topic-2-console" class="topic-console"></pre>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <script src="main.js"></script>
+  </body>
+</html>
