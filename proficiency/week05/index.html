@@ -22,64 +22,146 @@
         <div class="topic-body">
           <p class="topic-item">Definitions</p>
           <ul class="topic-item-text" style="list-style: square;">
-            <li>JavaScript Object Notation</li>
-            <li>It's a lightweight format for storing and transporting data</li>
-            <li>Often used when data is transferred from/to server</li>
-            <li>It’s easy to understand and use</li>
-          </ul>
-          <p class="topic-item">Syntax</p>
-          <ul class="topic-item-text" style="list-style: square;">
-            <li>A JSON object in enclosed between { } (curly braces)</li>
+            <li>Asynchronous JavaScript and XML</li>
             <li>
-              An array of objects are enclosed between [ ] (square braces)
-            </li>
-            <li>Property name and its value are separated by : (colon)</li>
-            <li>Each tuple (name, value) is separated by , (comma)</li>
-          </ul>
-          <p class="topic-item">Convert String to JSON</p>
-          <ul class="topic-item-text" style="list-style: square;">
-            <li>It’s easy to convert from string to JSON In Javascript</li>
-            <li>
-              Create a string with the JSON syntax
+              It reads data from a web server after a full load and DOM
+              initialization
             </li>
             <li>
-              The use the built-in function <code>JSON.parse()</code>to convert
-              it
+              Elements in page can be updated without reloading the entire page
+            </li>
+            <li>
+              Asynchronously send/receive data from server without blocking UI
             </li>
           </ul>
+          <p class="topic-item">How it works</p>
+          <ol class="topic-item-text" type="I">
+            <li>
+              An event occurs in a web page (the page is loaded, a button is
+              clicked)
+            </li>
+            <li>
+              An XMLHttpRequest object is created by JavaScript
+            </li>
+            <li>The XMLHttpRequest object sends a request to a web server</li>
+            <li>The server processes the request</li>
+            <li>The server sends a response back to the web page</li>
+            <li>The response is read by JavaScript</li>
+            <li>
+              Proper action (such a page update) is performed by JavaScript
+            </li>
+          </ol>
+          <p class="topic-item">Example</p>
+          <p class="topic-item-text">
+            This example loads data from a remote JSON file (using AJAX),
+            allowing user to browse data. Clicking 'Next Employee', the data
+            will be shown using round-robin fashion.
+          </p>
+          <pre class="prettyprint" id="topic-1-code">          
+var remoteDB = null;
+var remoteCurrentEmployee = 0;
+
+function showEmployee(db, currentEmployee) {
+  if (db === null) {
+    alert("Database not initialized. Load it before usage.");
+  }
+
+  document.getElementById("employee").innerHTML =
+    db.employees[currentEmployee].firstName +
+    " " +
+    db.employees[currentEmployee].lastName;
+
+  document.getElementById("strjson").innerHTML =
+    "All database: " +
+    JSON.stringify(db) +
+    "<br/>" +
+    "Current employee: " +
+    JSON.stringify(db.employees[currentEmployee]);
+}
+
+function loadRemoteDB() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      remoteDB = JSON.parse(this.responseText);
+      remoteCurrentEmployee = 0;
+      showEmployee(remoteDB, remoteCurrentEmployee);
+      remoteCurrentEmployee++;
+    }
+  };
+  xhttp.open(
+    "GET",
+    "https://raw.githubusercontent.com/pereira-pedro/cs261/master/week04/employee.json",
+    true
+  );
+  xhttp.send();
+}
+
+document.getElementById("nextRemote").addEventListener(
+  "click",
+  function() {
+    showEmployee(remoteDB, remoteCurrentEmployee);
+
+    remoteCurrentEmployee++;
+    if (remoteCurrentEmployee >= remoteDB.employees.length) {
+      remoteCurrentEmployee = 0;
+    }
+  },
+  false
+);
+
+document.getElementById("loadRemote").addEventListener(
+  "click",
+  function() {
+    loadRemoteDB();
+  },
+  false
+);</pre>
+          <button id="loadRemote">
+            Load DB
+          </button>
+          <br />
+          <button id="nextRemote">
+            Next Employee
+          </button>
+
+          <h2 id="employee"></h2>
+
+          <pre class="prettyprint" id="strjson"></pre>
+          <p class="topic-item">Consuming a Web Service</p>
+          <p class="topic-item-text">
+            One of the greatest thing about AJAX is the possibility to consume a
+            REST API on the client side.
+          </p>
           <p class="topic-item-header">Example</p>
           <pre class="prettyprint" id="topic-1-code">
-var buffer = '';
-const students = JSON.parse("{ [ { name: 'Pedro Pereira', email: 'per17009@byui.edu', gpa: 3.6}, { name: 'Tatiana Pereira', email: 'tmarin@byui.edu', gpa: 4}] }");
+const xhttp = new XMLHttpRequest();
+const uri = encodeURI(
+  "http://api.weatherstack.com/current?access_key=69884e06e056d3e5f763b6f9875738b2&query=Campo Grande"
+);
 
-for(var i in sudents) {
-  buffer += `Name: ${student[i].name}\nE-mail: ${student[i].email}\nGPA: ${student[i].gpa}`;
-}</pre
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    const container = document.getElementById("topic-1-console");
+    const response = JSON.parse(this.responseText);
+    var buffer = "";
+    container.style.visibility = "visible";
+    buffer += `City: ${response.location.name}, ${response.location.region}, ${response.location.country}\n`;
+    buffer += `Temperature: ${response.current.temperature} C\n`;
+    buffer += `Humidity: ${response.current.humidity} %\n`;
+
+    container.innerHTML = buffer;
+  }
+};
+xhttp.open("GET", uri, true);
+xhttp.send();
+return '';
+              </pre
           >
-          <button class="topic-button" data-id="1">Execute</button>
+          <button onclick="loadWeather()">Execute</button>
           <div class="topic-console">
             <pre id="topic-1-console" class="topic-console"></pre>
           </div>
-
-          <p class="topic-item">Complete Example</p>
-          <p class="m-2" id="employee"></p>
-
-          <button id="loadLocal">
-            Load Local DB
-          </button>
-          <button id="loadRemote">
-            Load Remote DB
-          </button>
-          <br />
-          <button id="nextLocal">
-            Next Local Employee
-          </button>
-
-          <button id="nextRemote">
-            Next Remote Employee
-          </button>
-
-          <pre class="prettyprint" id="strjson"></pre>
         </div>
       </li>
     </ul>

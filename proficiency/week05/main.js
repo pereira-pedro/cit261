@@ -21,9 +21,7 @@ function executeCode(topic) {
 }
 
 var remoteDB = null;
-var localDB = null;
 var remoteCurrentEmployee = 0;
-var localCurrentEmployee = 0;
 
 function showEmployee(db, currentEmployee) {
   if (db === null) {
@@ -61,31 +59,28 @@ function loadRemoteDB() {
   xhttp.send();
 }
 
-function loadLocalDB() {
-  localDB = JSON.parse(
-    '{ "employees" : [' +
-      '{ "firstName":"John" , "lastName":"Doe" },' +
-      '{ "firstName":"Anna" , "lastName":"Smith" },' +
-      '{ "firstName":"Peter" , "lastName":"Jones" } ]}'
+function loadWeather() {
+  const xhttp = new XMLHttpRequest();
+  const uri = encodeURI(
+    "http://api.weatherstack.com/current?access_key=69884e06e056d3e5f763b6f9875738b2&query=Campo Grande"
   );
 
-  localCurrentEmployee = 0;
-  showEmployee(localDB, localCurrentEmployee);
-  localCurrentEmployee++;
-}
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const container = document.getElementById("topic-1-console");
+      const response = JSON.parse(this.responseText);
+      var buffer = "";
+      container.style.visibility = "visible";
+      buffer += `City: ${response.location.name}, ${response.location.region}, ${response.location.country}\n`;
+      buffer += `Temperature: ${response.current.temperature} C\n`;
+      buffer += `Humidity: ${response.current.humidity} %\n`;
 
-document.getElementById("nextLocal").addEventListener(
-  "click",
-  function() {
-    showEmployee(localDB, localCurrentEmployee);
-
-    localCurrentEmployee++;
-    if (localCurrentEmployee >= localDB.employees.length) {
-      localCurrentEmployee = 0;
+      container.innerHTML = buffer;
     }
-  },
-  false
-);
+  };
+  xhttp.open("GET", uri, true);
+  xhttp.send();
+}
 
 document.getElementById("nextRemote").addEventListener(
   "click",
@@ -96,14 +91,6 @@ document.getElementById("nextRemote").addEventListener(
     if (remoteCurrentEmployee >= remoteDB.employees.length) {
       remoteCurrentEmployee = 0;
     }
-  },
-  false
-);
-
-document.getElementById("loadLocal").addEventListener(
-  "click",
-  function() {
-    loadLocalDB();
   },
   false
 );
