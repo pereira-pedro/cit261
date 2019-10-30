@@ -62,7 +62,7 @@ function loadRemoteDB() {
 function loadWeather() {
   const xhttp = new XMLHttpRequest();
   const uri = encodeURI(
-    "https://api.darksky.net/forecast/f1ef40c6dc15c9c071cdfc80980f2e43/-20.450,-54.617"
+    "http://api.weatherstack.com/current?access_key=69884e06e056d3e5f763b6f9875738b2&query=Campo Grande"
   );
 
   xhttp.onreadystatechange = function() {
