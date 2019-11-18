@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week06</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week06</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects.</h3>
+  <ul>
+    <li>
+      <div class="topic-title" id="t1">Web Storage API</div>
+      <div class="topic-body">
+        <p class="topic-item">Web Storage is a mechanism providing key/value pairs storage. It is easier to store data
+          in Web Storate API than the old cookies mechanism. Quick facts:</p>
+        <ul class="topic-item-text" style="list-style: square;">
+          <li>No data is transfereed to server</li>
+          <li>
+            It has much more storage space (up to 5MB)
+          </li>
+          <li>
+            Storage is per origin (protocol + domain). All page from the same origin can access data.
+          </li>
+          <li>
+            Virtually any data type can be stored
+          </li>
+        </ul>
+        <p class="topic-item">There is two ways to store data:</p>
+        <ol class="topic-item-text" type="I">
+          <li>
+            Data will be stored permanently without any expiration date
+          </li>
+          <li>
+            Data will be available only for current session and it will be destroyed when the session ends.
+          </li>
+          <li>
+            Only strings can be stored. It is necessary to convert data types.
+          </li>
+        </ol>
+        <p class="topic-item-header">Example 1 - Simple Data</p>
+        <p class="topic-item-text">
+          This example stores a student both local and session. There is three ways to store data.
+        </p>
+        <pre class="prettyprint" id="topic-1-code">
+var buffer = '';
+const firstName = 'Pedro';
+const lastName = 'Pereira';
+const age = 47;
+localStorage.setItem('firstname', firstName);
+localStorage['lastname'] = lastName;
+localStorage.age = age;
+
+sessionStorage.setItem('firstname', firstName);
+sessionStorage['lastname'] = lastName;
+sessionStorage.age = age;
+
+buffer += `Local  : ${localStorage.getItem('firstname')} ${localStorage['lastname']} will be ${Number.parseInt(localStorage.age) + 1} next year.\n`; 
+buffer += `Session: ${sessionStorage.getItem('firstname')} ${sessionStorage['lastname']} will be ${Number.parseInt(sessionStorage.age) + 1} next year.`; 
+</pre>
+        <button class="topic-button" data-id="1">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-1-console" class="topic-console"></pre>
+        </div>
+        <p class="topic-item-header">Example 2 - Arrays</p>
+        <pre class="prettyprint" id="topic-2-code">
+var buffer = '';
+const students = [
+  {firstname: 'Pedro', lastname: 'Pereira', age: 47},
+  {firstname: 'Tatiana', lastname: 'Pereira', age: 43},
+];
+
+const strStudents = JSON.stringify(students);
+localStorage.students = strStudents;
+sessionStorage.students = strStudents;
+
+var data = JSON.parse(localStorage.students);
+for(var i in data) {
+  buffer += `Local  : ${data[i].firstname} ${data[i].lastname} is ${data[i].age}.\n`; 
+}
+var data = JSON.parse(sessionStorage.students);
+for(var i in data) {
+  buffer += `Session: ${data[i].firstname} ${data[i].lastname} is ${data[i].age}.\n`; 
+}
+</pre>
+        <button class="topic-button" data-id="2">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-2-console" class="topic-console"></pre>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <script src="main.js"></script>
+</body>
+
+</html>
