@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week06</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week07</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>DOM Document Object Model</h3>
+  <ul>
+    <li>
+      <div class="topic-title" id="t1">DOM Document Object Model</div>
+      <div class="topic-body">
+        <p class="topic-item-text">The W3C Document Object Model (DOM) is a platform and language-neutral interface that
+          allows programs and scripts to dynamically access and update the content, structure, and style of a document
+        </p>
+        <ul class="topic-item-text" style="list-style: square;">
+          <li>JavaScript can change all the HTML elements in the page
+          </li>
+          <li>
+            JavaScript can change all the HTML attributes in the page
+          </li>
+          <li>
+            JavaScript can change all the CSS styles in the page
+          </li>
+          <li>
+            JavaScript can remove existing HTML elements and attributes
+          </li>
+          <li>
+            JavaScript can add new HTML elements and attributes
+          </li>
+          <li>JavaScript can react to all existing HTML events in the page
+          </li>
+          <li>JavaScript can create new HTML events in the page
+          </li>
+        </ul>
+        <p class="topic-item">Programming DOM</p>
+        <p class="topic-item-text">
+          In DOM context all HTML elements are defined as objects.
+          The programming interface is the properties and methods of each object.
+          A property is a value that you can get or set (like changing the content of an HTML element).
+          A method is an action you can do (like add or deleting an HTML element).
+        </p>
+        <p class="topic-item-header">Example 1 - Changing element property value.</p>
+        <div id="demo-1">Hey there!</div>
+
+        <pre class="prettyprint" id="topic-1-code">
+document.getElementById("demo-1").innerHTML = "Hello World!";
+</pre>
+        <button class="topic-button" data-id="1">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-1-console" class="topic-console"></pre>
+        </div>
+        <p class="topic-item-header">Example 2 - <code>createElement()</code> Method.</p>
+        <ol class="topic-item-text" type="I">
+          <li>Creates an HTML element.</li>
+          <li>Further object customization is required.</li>
+          <li>After object set up, it needs to be added to DOM</li>
+        </ol>
+        <div id="demo-2"></div>
+
+        <pre class="prettyprint" id="topic-2-code">
+var btn = document.createElement("BUTTON");           // Creation
+btn.innerHTML = "CLICK ME";                           // Settings
+document.getElementById("demo-2").appendChild(btn);   // Appending
+buffer = "done."
+</pre>
+        <button class="topic-button" data-id="2">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-2-console" class="topic-console"></pre>
+        </div>
+        <p class="topic-item-header">Example 3 - <code>appendChild()</code> Method.</p>
+        <p class="topic-item-text">Appends a node to DOM as the last child.</p>
+        <ul id="demo-3">
+          <li>Pedro Pereira</li>
+        </ul>
+
+        <pre class="prettyprint" id="topic-3-code">
+var node = document.createElement("LI");                    // Create a li node
+var textnode = document.createTextNode("Tatiana Pereira");  // Create a text node
+node.appendChild(textnode);                                 // Append the text to li
+document.getElementById("demo-3").appendChild(node);        // Append li to ul with id="demo-3"
+buffer = "done."
+</pre>
+        <button class="topic-button" data-id="3">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-3-console" class="topic-console"></pre>
+        </div>
+        <p class="topic-item-header">Example 4 - <code>insertBefore()</code> Method.</p>
+        <p class="topic-item-text">Insert a node child right before an existing child.</p>
+        <ul id="demo-4">
+          <li>Pedro Pereira</li>
+        </ul>
+
+        <pre class="prettyprint" id="topic-4-code">
+var newItem = document.createElement("LI");                 // Create a li node
+var textnode = document.createTextNode("Tatiana Pereira");  // Create a text node
+newItem.appendChild(textnode);                              // Append the text to li
+
+var list = document.getElementById("demo-4");               // Get the ul element to insert a new node
+list.insertBefore(newItem, list.childNodes[0]);             // Insert li before the first child of ul
+
+buffer = "done."
+</pre>
+        <button class="topic-button" data-id="4">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-4-console" class="topic-console"></pre>
+        </div>
+
+        <p class="topic-item-header">Example 5 - <code>removeChild()</code> Method.</p>
+        <p class="topic-item-text">Removes a specified child node of the specified element.</p>
+        <ul id="demo-5">
+          <li>Pedro Pereira</li>
+        </ul>
+
+        <pre class="prettyprint" id="topic-5-code">
+var list = document.getElementById("demo-5");      // Get the ul element with id="demo-5"
+list.removeChild(list.childNodes[0]);              // Remove ul's first child node (index 0)
+
+buffer = "done."
+</pre>
+        <button class="topic-button" data-id="5">Execute</button>
+        <div class="topic-console">
+          <pre id="topic-5-console" class="topic-console"></pre>
+        </div>
+
+      </div>
+    </li>
+  </ul>
+  <script src="main.js"></script>
+</body>
+
+</html>
