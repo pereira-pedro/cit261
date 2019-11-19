@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week 10</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <style>
+    .demo-3-container {
+      height: 3rem;
+    }
+
+    .animation.active {
+      animation: bounce-1 1s 10 alternate;
+    }
+
+    @keyframes bounce-1 {
+      from {
+        transform: translateY(0px);
+      }
+
+      to {
+        transform: translateY(-15px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week 10</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and
+    Transition Events</h3>
+  <ul>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">Overview</p>
+
+        <p class="topic-item-text">The <code>EventTarget</code> method <code>addEventListener()</code> sets up a
+          function that will be called whenever the specified event is delivered to the target.
+          Common targets are <code>Element</code>, <code>Document</code>, and <code>Window</code>.</p>
+        <p class="topic-item-text">
+          All the events follow the same pattern:
+          <code>target.addEventListener(type, listener[, options]);</code>
+          The complete list can be found in <a
+            href="https://developer.mozilla.org/en-US/docs/Web/Events">https://developer.mozilla.org/en-US/docs/Web/Events</a>
+        </p>
+
+        <pre class="prettyprint" id="topic-1-code">
+document.getElementById('demo-1').style.display = 'block';
+const student = {name: "Pedro Pereira", email: 'per17009@byui.edu'}
+var buffer;
+
+document.getElementsByClassName('show-student')[0].addEventListener("click", function(event) {
+document.getElementById(`topic-1-console`).innerText = `Name : ${student.name}\nEmail: ${student.email}`;
+})
+buffer = 'done.';
+</pre>
+        <button class="topic-button" data-id="1">Enable Event</button>
+        <div class="topic-console">
+          <pre id="topic-1-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-1" style="display: none;">
+          <button class='show-student'>Show Student</button>
+        </div>
+
+        <p class="topic-item">The <code>TouchEvent</code> Object</p>
+        <p class="topic-item-text">Events that occur when user touches a touch-based device, belongs to the
+          <code>TouchEvent</code> Object. These are the types of events: </p>
+
+        <ul class="topic-item-text" style="list-style: square;">
+          <li>ontouchstart</li>
+          <li>ontouchmove</li>
+          <li>ontouchend</li>
+          <li>ontouchcancel</li>
+        </ul>
+
+        <pre class="prettyprint">
+function draw(canvas, points) {
+  var ctx = canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.color = '#ff0000';
+  var pastRow = null;
+  const rect = canvas.getBoundingClientRect();
+
+  points.forEach(function (row) {
+    console.log(JSON.stringify(row));
+    if (pastRow !== null) {
+      ctx.moveTo(pastRow.x - rect.left, pastRow.y - rect.top);
+      ctx.lineTo(row.x - rect.left, row.y - rect.top);
+      ctx.stroke();
+    }
+
+    pastRow = { identifier: row.identifier, x: row.x, y: row.y };
+
+
+});
+</pre>
+        <pre class="prettyprint" id="topic-2-code">
+document.getElementById('demo-2').style.display = 'block';
+
+const canvas = document.getElementById('demo-2-canvas');
+var eventsLog = [];
+
+canvas.addEventListener("touchstart", function(event) {
+  const e = event.changedTouches[0];
+  eventsLog.push({ identifier: e.identifier, x: e.clientX, y: e.clientY });
+}, false);
+
+canvas.addEventListener("touchmove", function(event) {
+  const e = event.changedTouches[0];
+  eventsLog.push({ identifier: e.identifier, x: e.clientX, y: e.clientY });
+}, false);
+
+canvas.addEventListener("touchend", function(event) {
+  const e = event.changedTouches[0];
+  eventsLog.push({ identifier: e.identifier, x: e.clientX, y: e.clientY });
+
+  var buffer = 'Shown';
+
+  draw(canvas, eventsLog);
+
+  eventsLog = [];
+
+  document.getElementById(`topic-2-console`).innerText = buffer;
+}, false);
+
+canvas.addEventListener("touchcancel", function(event) {
+  eventsLog = [];
+}, false);
+
+buffer = "done.";</pre>
+        <button class="topic-button" data-id="2">Enable Events</button>
+        <div class="topic-console">
+          <pre id="topic-2-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-2" style="display: none;">
+          <canvas id="demo-2-canvas" width="400" height="400" style="border: 1px solid black;"></canvas>
+        </div>
+
+        <p class="topic-item">CSS Animation & Transitions events</p>
+        <p class="topic-item-text">These are the events to CSS animation and Transition: </p>
+
+        <ul class="topic-item-text" style="list-style: square;">
+          <li>animationstart</li>
+          <li>animationcancel</li>
+          <li>animationend</li>
+          <li>animationiteration</li>
+          <li>transitionstart</li>
+          <li>transitioncancel</li>
+          <li>transitionend</li>
+          <li>transitionrun</li>
+        </ul>
+
+        <pre class="prettyprint">
+.demo-3-container {
+  height: 3rem;
+}
+.animation.active {
+  animation: bounce-1 1s 10 alternate;
+}
+
+@keyframes bounce-1 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(-15px);
+  }
+}</pre>
+
+        <pre class="prettyprint" id="topic-3-code">
+document.getElementById('demo-3').style.display = 'block';
+
+const animation = document.querySelector('p.animation');
+const animationEventLog = document.getElementById('topic-3-console');
+const applyAnimation = document.querySelector('.animation-example>button.activate');
+let iterationCount = 0;
+
+animation.addEventListener('animationstart', function() {
+  animationEventLog.textContent = 'animation started';
+});
+
+animation.addEventListener('animationiteration', function() {
+  iterationCount++;
+  animationEventLog.textContent = `animation iterations: ${iterationCount}`;
+});
+
+animation.addEventListener('animationend', function() {
+  animationEventLog.textContent = 'animation ended';
+  animation.classList.remove('active');
+  applyAnimation.textContent = "Activate animation";
+});
+
+applyAnimation.addEventListener('click', function() {
+  animation.classList.toggle('active');
+  iterationCount = 0;
+  let active = animation.classList.contains('active');
+  if (active) {
+    applyAnimation.textContent = "Stop animation";
+  } else {
+    applyAnimation.textContent = "Start animation";
+  }
+});
+
+buffer = "done.";</pre>
+        <button class="topic-button" data-id="3">Enable Events</button>
+        <div class="topic-console">
+          <pre id="topic-3-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-3" style="display: none;">
+          <div class="animation-example">
+            <div class="container">
+              <p class="animation">Pedro Pereira.</p>
+            </div>
+            <button class="activate" type="button">Activate animation</button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <script src="main.js"></script>
+</body>
+
+</html>
