@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week08</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <style>
+    .error {
+      color: #e53935;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .info {
+      color: #1e88e5;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .success {
+      color: #43a047;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .disabled {
+      text-decoration: line-through;
+    }
+
+    table {
+      border-collapse: collapse;
+
+    }
+
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      padding: 4px;
+    }
+  </style>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week08</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Manipulating CSS Class Properties Using JavaScript</h3>
+  <ul>
+    <li>
+      <div class="topic-title" id="t1">Manipulating CSS Class Properties Using JavaScript</div>
+      <div class="topic-body">
+        <p class="topic-item-text">It is important to appropriately select DOM elements before manipulating CSS
+          attributes. DOM provides five methods to access elements:
+          <table>
+            <tr>
+              <th>Gets</th>
+              <th>Selector</th>
+              <th>Syntax Method</th>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>#demo</td>
+              <td><code>getElementById()</code></td>
+            </tr>
+            <tr>
+              <td>Class</td>
+              <td>.demo</td>
+              <td><code>getElementsByClassName()</code></td>
+            </tr>
+            <tr>
+              <td>Tag</td>
+              <td>demo</td>
+              <td><code>getElementsByTagName()</code></td>
+            </tr>
+            <tr>
+              <td>Selector (single)</td>
+              <td></td>
+              <td><code>querySelector()</code></td>
+            </tr>
+            <tr>
+              <td>Selector (all)</td>
+              <td></td>
+              <td><code>querySelectorAll()</code></td>
+            </tr>
+          </table>
+        </p>
+        <p class="topic-item">Modifying Classes</p>
+        <p class="topic-item-text">Classes in CSS are special attributes containing element customization. Mostly
+          styling elements are modifying using CSS classes. DOM provides the following methods to handle classes:
+
+          <table>
+            <tr>
+              <th>Method/Property</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td><code>className</code></td>
+              <td>Toggles a class on or off</td>
+              <td><code>element.className;</code></td>
+            </tr>
+            <tr>
+              <td><code>classList.add()</code></td>
+              <td>Adds one or more class values</td>
+              <td><code>element.classList.add('active');</code></td>
+            </tr>
+            <tr>
+              <td><code>classList.toggle()</code></td>
+              <td>Toggles a class on or off</td>
+              <td><code>element.classList.toggle('active');</code></td>
+            </tr>
+            <tr>
+              <td><code>classList.contains()</code></td>
+              <td>Checks if class value exists</td>
+              <td><code>element.classList.contains('active');</code></td>
+            </tr>
+            <tr>
+              <td><code>classList.replace()</code></td>
+              <td>Replace an existing class value with a new class value</td>
+              <td><code>element.classList.replace('old', 'new');</code></td>
+            </tr>
+            <tr>
+              <td><code>classList.remove()</code></td>
+              <td>Remove a class value</td>
+              <td><code>element.classList.remove('active');</code></td>
+            </tr>
+          </table>
+        </p>
+        <p class="topic-item-header">Example 1 - Manipulating Classes.</p>
+
+        <pre class="prettyprint">
+.error {
+  color: #e53935;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.info {
+  color: #1e88e5;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.success {
+  color: #43a047;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.disabled {
+  text-decoration: line-through;
+}
+
+table {
+  border-collapse: collapse;
+  
+}
+table, td, th {
+  border: 1px solid black;
+  padding: 4px;
+}
+</pre>
+        <div id="demo-1">
+          <p class="info">
+            This is an info message.
+          </p>
+
+          <p class="success">
+            This is a success message.
+          </p>
+
+          <p class="error">
+            This is a error message.
+          </p>
+
+        </div>
+
+        <pre class="prettyprint" id="topic-1-code">
+const element = document.querySelector('.info');
+if( element !== null) {
+  element.classList.add('disabled');
+}
+buffer = "done.";
+</pre>
+        <button class="topic-button" data-id="1">Disable Info Message</button>
+        <div class="topic-console">
+          <pre id="topic-1-console" class="topic-console"></pre>
+        </div>
+
+        <pre class="prettyprint" id="topic-2-code">
+const element = document.querySelector('.info');
+if( element !== null) {            
+  element.classList.remove('disabled');
+}
+buffer = "done.";
+        </pre>
+        <button class="topic-button" data-id="2">Enable Info Message</button>
+        <div class="topic-console">
+          <pre id="topic-2-console" class="topic-console"></pre>
+        </div>
+
+
+        <pre class="prettyprint" id="topic-3-code">
+var btn = document.querySelector("[data-id='3']");
+var element = document.querySelector(".info");
+
+if( element !== null ) {
+  if( !element.classList.contains('disabled') ) {
+    btn.innerText = "Enable Info Message";
+  } else {
+    btn.innerText = "Disable Info Message";
+  }
+
+  element.classList.toggle('disabled');
+}
+
+buffer = "done.";
+            </pre>
+        <button class="topic-button" data-id="3">Disable Info Message</button>
+        <div class="topic-console">
+          <pre id="topic-3-console" class="topic-console"></pre>
+        </div>
+
+        <pre class="prettyprint" id="topic-4-code">
+var element = document.querySelector(".info");
+if( element !== null ) {
+  element.classList.replace('info', 'error');
+} else  {
+  document.querySelector(".error").classList.replace('error', 'info');
+}
+buffer = "done.";
+                        </pre>
+        <button class="topic-button" data-id="4">Replace Info Message</button>
+        <div class="topic-console">
+          <pre id="topic-4-console" class="topic-console"></pre>
+        </div>
+
+
+      </div>
+    </li>
+  </ul>
+  <script src="main.js"></script>
+</body>
+
+</html>
