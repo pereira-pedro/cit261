@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week 09</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <style>
+    .campoGrandePic {
+      margin: 30px;
+      width: 400px;
+      height: 280px;
+      background-image: url(https://thumbs.dreamstime.com/b/aerial-view-ceara-avenue-campo-grande-ms-brazil-february-city-one-principals-avenues-110333811.jpg);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: 400px 280px;
+
+      transition: all 2.5s ease-in-out;
+    }
+
+    .campoGrandePic.zoom {
+      background-size: 800px 438px !important;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: grey;
+    }
+
+    .animate {
+      animation-name: change-color;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-play-state: paused;
+    }
+
+    @keyframes change-color {
+
+      0% {
+        background: red;
+      }
+
+      25% {
+        background: yellow;
+      }
+
+      50% {
+        background: blue;
+      }
+
+      75% {
+        background: green;
+      }
+
+      100% {
+        background: red;
+      }
+
+    }
+  </style>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week 09</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</h3>
+  <ul>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item-text">Transitions in CSS are applied to an element and specify that when a property changes
+          it should do so over gradually over over a period of time. Animations are different. When applied, they just
+          run and do their thing. They offer more fine-grained control as you can control different stops of the
+          animations.</p>
+        <p class="topic-item-text">
+          CSS 3 contains the following properties to handle transitions:
+        </p>
+
+        <ul style="list-style: square;">
+          <li><code>transition</code></li>
+          <li><code>transition-delay</code></li>
+          <li><code>transition-duration</code></li>
+          <li><code>transition-property</code></li>
+          <li><code>transition-timing-function</code></li>
+        </ul>
+
+        <p class="topic-item-text">
+          To create a transition effect, you must specify two things:</p>
+        <ol class="topic-item-text" type="I">
+          <li>the CSS property you want to add an effect to</li>
+          <li>the duration of the effect</li>
+        </ol>
+
+        <p class="topic-item">Triggering Transitions</p>
+        <p class="topic-item-text">It is necessary to get all the style attributes to manipulate transitions. The
+          <code>Window.getComputedStyle()</code> method returns an object containing the
+          values of all CSS properties of an element, after applying active stylesheets and resolving any basic
+          computation those values may contain. </p>
+        <pre class="prettyprint">
+.campoGrandePic {
+  margin: 30px;
+  width: 400px;
+  height: 280px;
+  background-image: url(https://thumbs.dreamstime.com/b/aerial-view-ceara-avenue-campo-grande-ms-brazil-february-city-one-principals-avenues-110333811.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 400px 280px;
+
+  transition: all 2.5s ease-in-out;
+}
+
+.campoGrandePic.zoom {
+  background-size: 800px 438px !important;
+}      
+        </pre>
+        <pre class="prettyprint" id="topic-1-code">
+document.getElementById('demo-1').style.display = 'block';
+const campoGrande = document.getElementsByClassName('campoGrandePic')[0];
+const campoGrandeBg = window.getComputedStyle(campoGrande).getPropertyValue('background-size');
+
+document.getElementsByClassName('zoomin')[0].onclick = function () {
+    if (!campoGrande.classList.contains('zoom')) {
+        campoGrande.classList.add('zoom');
+    }
+}
+
+document.getElementsByClassName('pause')[0].onclick = function () {
+    campoGrande.style.backgroundSize = window.getComputedStyle(campoGrande).getPropertyValue('background-size');
+    campoGrande.classList.remove('zoom');
+}
+
+document.getElementsByClassName('zoomout')[0].onclick = function () {
+    campoGrande.classList.remove('zoom');
+    campoGrande.style.backgroundSize = campoGrandeBg;
+}
+buffer = "done.";
+</pre>
+        <button class="topic-button" data-id="1">Enable Transitions</button>
+        <div class="topic-console">
+          <pre id="topic-1-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-1" style="display: none;">
+          <div class="campoGrandePic"></div>
+          <button class='zoomin'>Zoom In</button>
+          <button class='pause'>Pause</button>
+          <button class='zoomout'>Zoom Out</button>
+        </div>
+
+        <p class="topic-item">Triggering Animations</p>
+        <p class="topic-item-text">An animation lets an element gradually change from one style to another. You can
+          change as many CSS properties you want, as many times you want. To use CSS animation, you must first specify
+          some keyframes for the animation. Keyframes hold what styles the element will have at certain times. </p>
+        <pre class="prettyprint">
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+}
+
+.animate {
+  animation-name: change-color;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+}
+
+@keyframes change-color {
+  
+  0%   {background: red;}
+  25%  {background: yellow;}
+  50%  {background: blue;}
+  75%  {background: green;}
+  100% {background: red;}
+
+}</pre>
+        <pre class="prettyprint" id="topic-2-code">
+document.getElementById('demo-2').style.display = 'block';
+const box = document.getElementsByClassName('box')[0];
+const boxBgOriginal = window.getComputedStyle(box).getPropertyValue('background-color');
+
+document.getElementsByClassName('start-2')[0].onclick = function () {
+ if (!box.classList.contains('animate')) {
+        box.classList.add('animate');
+    }
+        box.style.animationPlayState = 'running';
+}
+
+document.getElementsByClassName('pause-2')[0].onclick = function () {
+        box.style.animationPlayState = 'paused';
+}
+
+document.getElementsByClassName('stop-2')[0].onclick = function () {
+    box.classList.remove('animate');
+    box.style.backgroundColor = boxBgOriginal;
+}
+buffer = "done.";</pre>
+        <button class="topic-button" data-id="2">Enable Animations</button>
+        <div class="topic-console">
+          <pre id="topic-2-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-2" style="display: none;">
+          <div class="box"></div>
+
+          <div style="margin-top: 10px">
+            <button class="start-2">Start</button>
+            <button class="pause-2">Pause</button>
+            <button class="stop-2">Stop</button>
+          </div>
+        </div>
+
+
+      </div>
+    </li>
+  </ul>
+  <script src="main.js"></script>
+</body>
+
+</html>
