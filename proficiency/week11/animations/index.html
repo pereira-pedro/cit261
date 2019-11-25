@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week 11</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="animations.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week 11</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)</h3>
+  <ul>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">CSS3 Animations</p>
+
+        <p class="topic-item-text">An animation lets an element gradually change from one style to another.
+          You can change as many CSS properties you want, as many times you want.
+          To use CSS animation, you must first specify some keyframes for the animation.
+          Keyframes hold what styles the element will have at certain times.
+        </p>
+        <p class="topic-item-text">
+          The <code>@keyframes</code> provides the animation with gradually changing from the current
+          style to the new style at certain times.
+          To get an animation to work, you must bind the animation to an element.
+        </p>
+      </div>
+
+    </li>
+    <li>
+      <p class="topic-item">CSS Animation</p>
+      <pre class="prettyprint">
+.car {
+  width:312px;
+  height:155px;
+  background-image: url("https://www.tesla.com/xNVh4yUEc3B9/02_Desktop.jpg");
+  background-size: 312px 155px;
+  position: relative;
+  animation:to-left 4s infinite;
+  float: right;
+}
+  
+@keyframes to-left
+{
+  0% {transform: translateX(100%);}
+100% {transform: translateX(-100vw);}
+}</pre>
+    </li>
+  </ul>
+  <div class="topic-body">
+    <div class="container">
+      <div class="car"></div>
+    </div>
+  </div>
+</body>
+
+</html>
