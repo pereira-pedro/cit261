@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week 11</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="transitions.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week 11</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)</h3>
+  <ul>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">CSS3 Transitions</p>
+
+        <p class="topic-item-text">Transitions make the element smoothly and gradually change from one state to
+          another. To create a transition effect, you must specify the CSS property you want to add an effect to and the
+          duration of the effect. The default value to duration part is 0, so the transition will have no effect.
+        </p>
+        <p class="topic-item-text">These are the CSS properties available: </p>
+
+        <ul class="topic-item-text" style="list-style: square;">
+          <li>transition</li>
+          <li>transition-delay</li>
+          <li>transition-duration</li>
+          <li>transition-property</li>
+          <li>transition-timing-function</li>
+        </ul>
+
+        <p class="topic-item-text">
+          Each transition property can be defined individually, but for cleaner and faster code, it's recommended that
+          you use the transition shorthand:</p>
+
+        <code>
+div {
+  transition: [property] [duration] [timing-function] [delay];
+}
+        </code>
+      </div>
+
+    </li>
+    <li>
+      <p class="topic-item">Without Transitions</p>
+      <div class="topic-body">
+        <div class="wrap">
+          <div class="container">
+            <h1 class="header">0</h1>
+            <div class="box1-wt box-wt"></div>
+          </div>
+          <div class="container">
+            <h1 class="header">0</h1>
+            <div class="box2-wt box-wt"></div>
+          </div>
+          <div class="container">
+            <h1 class="header">0</h1>
+            <div class="box3-wt box-wt"></div>
+          </div>
+        </div>
+    </li>
+
+    <li>
+      <p class="topic-item">With CSS Transitions</p>
+      <div class="topic-body">
+        <div class="wrap">
+          <div class="container">
+            <h1 class="header">300ms</h1>
+            <div class="box1 box"></div>
+          </div>
+          <div class="container">
+            <h1 class="header">1s</h1>
+            <div class="box2 box"></div>
+          </div>
+          <div class="container">
+            <h1 class="header">3s</h1>
+            <div class="box3 box"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</body>
+
+</html>
