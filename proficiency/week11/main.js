@@ -36,8 +36,5 @@ function draw(canvas, points) {
     }
 
     pastRow = { identifier: row.identifier, x: row.x, y: row.y };
-
-
   });
-
 }

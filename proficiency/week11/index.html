@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week 11</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week 11</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>HTML5 Tags - Video, Audio, and Canvas</h3>
+  <ul>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">Overview</p>
+
+        <p class="topic-item-text">HTML5 introduces new tags to accommodate the increasingly interactive and
+          multimedia nature of the Web. While there have been numerous ways to embed video, audio, and dynamic imagery
+          in the past, the new web standard attempts to make this easier, more consistent, and more reliable.</p>
+        <p class="topic-item-text">
+          While the HTML tag to embed multimedia content is standardized, supporting media types and formats is browser
+          dependent. More information can be found in https://developer.mozilla.org/en-US/docs/Web/Media/Formats
+        </p>
+      </div>
+    </li>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">Video</p>
+
+        <video id="video-1" src="https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_640_3MG.mp4"
+          width="640" height="360" loop muted controls></video>
+
+        <pre class="prettyprint" id="topic-1-code">
+document.getElementById('demo-1').style.display = 'block';          
+const video = document.getElementById('video-1');
+var buffer;
+document.getElementById('video-control').addEventListener("click", function (event) {
+
+  if (event.currentTarget.textContent === 'Pause') {
+    video.pause();
+    event.currentTarget.textContent = "Play";
+  } else {
+    event.currentTarget.textContent = "Pause";
+    video.play();
+  }
+});
+buffer = 'done.';
+</pre>
+        <button class="topic-button" data-id="1">Enable Event</button>
+        <div class="topic-console">
+          <pre id="topic-1-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-1" style="display: none;">
+          <button id='video-control'>Play</button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">Audio</p>
+
+
+        <audio id="audio-1" loop controls>
+          <source src="https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3" type="audio/mpeg">
+        </audio>
+
+        <pre class="prettyprint" id="topic-2-code">
+  document.getElementById('demo-2').style.display = 'block';          
+  const audio = document.getElementById('audio-1');
+  var buffer;
+  document.getElementById('audio-control').addEventListener("click", function (event) {
+  
+    if (event.currentTarget.textContent === 'Pause') {
+      audio.pause();
+      event.currentTarget.textContent = "Play";
+    } else {
+      event.currentTarget.textContent = "Pause";
+      audio.play();
+    }
+  });
+  buffer = 'done.';
+  </pre>
+        <button class="topic-button" data-id="2">Enable Event</button>
+        <div class="topic-console">
+          <pre id="topic-2-console" class="topic-console"></pre>
+        </div>
+        <div id="demo-2" style="display: none;">
+          <button id='audio-control'>Play</button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <p class="topic-item">Canvas</p>
+      <p class="topic-item-text">The HTML5 <code>canvas</code> tag is used to draw graphics, on the fly, via
+        scripting (usually JavaScript).
+        However, the <code>canvas</code> element has no drawing abilities of its own (it is only a container for
+        graphics) - you must use a script to actually draw the graphics.</p>
+
+      <pre class="prettyprint">
+function draw(canvas, points) {
+  var ctx = canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.color = '#ff0000';
+  var pastRow = null;
+  const rect = canvas.getBoundingClientRect();
+
+  points.forEach(function (row) {
+     if (pastRow !== null) {
+      ctx.moveTo(pastRow.x - rect.left, pastRow.y - rect.top);
+      ctx.lineTo(row.x - rect.left, row.y - rect.top);
+      ctx.stroke();
+    }
+
+    pastRow = { identifier: row.identifier, x: row.x, y: row.y };
+});
+</pre>
+      <pre class="prettyprint" id="topic-3-code">
+document.getElementById('demo-3').style.display = 'block';
+
+const canvas = document.getElementById('demo-3-canvas');
+var eventsLog = [];
+var started = false;
+
+canvas.addEventListener("click", function(event) {
+  eventsLog.push({ x: event.clientX, y: event.clientY });
+  if( started ) {
+    draw(canvas, eventsLog);
+    eventsLog = [];
+  }
+  started = !started;
+
+}, false);
+
+buffer = "done.";</pre>
+      <button class="topic-button" data-id="3">Enable Canvas</button>
+      <div class="topic-console">
+        <pre id="topic-3-console" class="topic-console"></pre>
+      </div>
+      <div id="demo-3" style="display: none;">
+        <canvas id="demo-3-canvas" width="400" height="400" style="border: 1px solid black;"></canvas>
+      </div>
+
+    </li>
+  </ul>
+  <script src="main.js"></script>
+</body>
+
+</html>
