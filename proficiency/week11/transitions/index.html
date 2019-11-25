@@ -49,7 +49,34 @@ div {
     </li>
     <li>
       <p class="topic-item">Without Transitions</p>
-      <p class="topic-item-text">Point the mouse to a circle.</p>
+
+      <pre class="prettyprint">
+.box-wt {
+  border-radius: 50%;
+  height: 40px;
+  margin: 50px auto;
+  width: 40px;
+  
+}
+.box-wt:hover  {
+  transform: scale(3);
+}
+
+.box1-wt {
+  background: #ba000d;
+}
+
+.box2-wt {
+  background: #002984;
+}
+
+.box3-wt {
+  background: #087f23;
+}</pre>
+
+      <p class="topic-item-text">
+        Point the mouse to a circle.</p>
+
       <div class="topic-body">
         <div class="wrap">
           <div class="container">
@@ -69,6 +96,34 @@ div {
 
     <li>
       <p class="topic-item">With CSS Transitions</p>
+      <pre class="prettyprint">
+.box {
+  border-radius: 50%;
+  height: 40px;
+  margin: 50px auto;
+  width: 40px;
+  
+}
+.box:hover  {
+  transform: scale(3);
+  box-shadow: inset 0 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.box1 {
+  background: #ba000d;
+  transition: all 300ms;
+}
+
+.box2 {
+  background: #002984;
+  transition: all 1s;
+}
+
+.box3 {
+  background: #087f23;
+  transition: all 3s;
+}</pre>
+
       <p class="topic-item-text">Point the mouse to a circle.</p>
       <div class="topic-body">
         <div class="wrap">

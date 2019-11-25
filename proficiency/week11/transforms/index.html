@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CIT261 - Fall 2019 - Proficiency - Week 11</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="transforms.css" />
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+  <h1>CIT261 - Fall 2019 - Proficiency - Week 11</h1>
+  <h2>Pedro Pereira</h2>
+  <h3>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</h3>
+  <ul>
+    <li>
+      <div class="topic-body">
+        <p class="topic-item">CSS3 Transforms</p>
+
+        <p class="topic-item-text">CSS transforms is to change an element from one state to another. With the CSS
+          transforms property, you can rotate, move, skew, and scale elements. There are 2D and 3D transforms.
+          Transforms are triggered when an element changes states, such as on mouse-hover or mouse-click.
+        </p>
+        <p class="topic-item-text">These are the 2D CSS functions available: </p>
+
+        <ul class="topic-item-text" style="list-style: square;">
+
+          <li><code>translate()</code></li>
+          <li><code>rotate()</code></li>
+          <li><code>scaleX()</code></li>
+          <li><code>scaleY()</code></li>
+          <li><code>scale()</code></li>
+          <li><code>skewX()</code></li>
+          <li><code>skewY()</code></li>
+          <li><code>skew()</code></li>
+          <li><code>matrix()</code></li>
+        </ul>
+
+        <p class="topic-item-text">
+          Each transform function has its own parameters. The most special one is the
+          <code>matrix()</code>. It accepts 6 parameters being a subset of functions above. Although very powerful, it
+          is hard to use manually.</p>
+
+        <code>
+            matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())
+        </code>
+      </div>
+
+    </li>
+    <li>
+      <p class="topic-item">CSS Transform</p>
+      <p class="topic-item-text">Point the mouse to a circle.</p>
+      <div class="topic-body">
+        <div class="wrap">
+          <div class="container">
+            <h1 class="header">300ms</h1>
+            <div class="box1 box"></div>
+          </div>
+          <div class="container">
+            <h1 class="header">1s</h1>
+            <div class="box2 box"></div>
+          </div>
+          <div class="container">
+            <h1 class="header">3s</h1>
+            <div class="box3 box"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</body>
+
+</html>
